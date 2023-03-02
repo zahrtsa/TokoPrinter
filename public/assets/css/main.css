@@ -1,0 +1,28 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --primary: rgba(6, 43, 48, 1);
+  --secondary: rgba(66, 215, 133, 1);
+  --btn-prim: rgba(6, 43, 48, 0.2);
+  --btn-sec: rgba(66, 215, 133, 0.3);
+}
+
+#bg-primarys {
+  background-color: var(--primary) !important;
+}
+
+#bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+#button-prim {
+  background-color: var(--btn-prim);
+  color: var(--primary);
+}
+
+#button-sec {
+  background-color: var(--btn-sec);
+  color: var(--secondary);
+}
