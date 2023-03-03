@@ -11,13 +11,13 @@
                     </div>
                     <div class="card-body">
                         <hr>
-                        <h5 class="card-title fw-semibold">{{ $p->name }}</h5>
+                        <h5 class="card-title fw-semibold">{{ \Illuminate\Support\Str::limit($p->name, 12, '...') }}</h5>
                         <div class="d-flex">
                             <span class="card-text me-2 text-danger">{{ number_format($p->price) }} IDR</span>
                             <span class="px-3 py-0 rounded-3 rounded-md" id="button-prim">{{ $p->stock }} Stock</span>
 
                         </div>
-                        <p class="card-text mt-1">{{ $p->desc }}</p>
+                        <p class="card-text mt-1">{{ \Illuminate\Support\Str::limit($p->desc, 25, '...') }}</p>
                         <div class="d-flex">
                             <a href="{{ route('login') }}" class="p-2 me-1 rounded-md rounded-3 text-decoration-none"
                                 id="button-prim"><i class="bi bi-bag-plus px-2"></i></a>

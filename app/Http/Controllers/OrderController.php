@@ -41,13 +41,13 @@ class OrderController extends Controller
         }
 
         $product = Product::find($id);
-        $newStock = $product->stock - $request->stock;
+        $newStock = $product->stock - $request->amount;
 
         if ($newStock <= 0) {
             return redirect()->route('order.show', $product->id)->with('error', 'Jumlah Barang Yang Diminta Tidak Mencukupi');
         }
 
-        $price = $product->price * $request->stock;
+        $price = $product->price * $request->amount;
         $orders = new Order();
 
         $postData = ['user_id' => Auth::user()->id, 'product_id' => $product->id, 'price' => $price, 'is_confirmed' => false, 'amount' => $request->amount];
@@ -69,7 +69,8 @@ class OrderController extends Controller
     public function show(Order $order, $id)
     {
         $product = Product::find($id);
-        return view('order.index', compact(['product']));
+        $order = Order::find($id);
+        return view('order.index', compact(['product', 'order']));
     }
 
     /**
@@ -91,8 +92,9 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        Order::destroy($id);
+        return redirect()->route('order.waitConfirm')->with('success', 'Berhasil Cancel Order');
     }
 }

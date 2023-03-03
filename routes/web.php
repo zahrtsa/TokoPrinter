@@ -48,4 +48,5 @@ Route::prefix('home')->middleware(['auth', 'custom'])->group(function () {
     Route::get('orderDetail', 'App\Http\Controllers\OrderController' . '@index')->name('order.waitConfirm');
     Route::post('order/store/{id}', 'App\Http\Controllers\OrderController' . '@store')->name('order.store');
     Route::get('product/show/{id}', 'App\Http\Controllers\OrderController' . '@show')->name('order.show');
+    Route::get('order/destroy/{id}', 'App\Http\Controllers\OrderController' . '@destroy')->name('order.destroy');
 });

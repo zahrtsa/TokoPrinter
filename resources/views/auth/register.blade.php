@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
-                <div class="card bg-white shadow-lg rounded-md rounded-3 p-4">
+                <div class="bg-white rounded-md rounded-3 p-4">
                     <span class="mb-3 fs-3 fw-semibold">Register</span>
                     <form action="{{ route('register') }}" method="post">
                         @csrf

@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Your Orders')
+@section('title', 'laH?shop')
 @section('content')
     <div class="container">
-        <div class="bg-white shadow-lg rounded-md rounded-3 p-5">
+        <div class="bg-white rounded-md rounded-3 p-5">
             <p class="fw-semibold fs-4">Products Order</p>
             <hr class="mb-2">
             <table class="table table-hover display" id="table_id">
@@ -17,6 +17,7 @@
                         <th scope="col">Order At</th>
                         <th scope="col">Confirm At</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +40,16 @@
                             @endif
                             <td>
                                 @if ($o->is_confirmed == 1)
-                                    <span class="badge bg-success">Confirmed</span>
+                                    <span class="badge" id="button-sec">Confirmed</span>
                                 @else
                                     <span class="badge bg-warning">Pendding</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($o->is_confirmed == 1)
+                                    <a href="" class="btn disabled" id="button-prim">Cancel</a>
+                                @else
+                                    <a href="{{ route('order.destroy', $o->id) }}" class="btn btn-danger">Cancel</a>
                                 @endif
                             </td>
                         </tr>

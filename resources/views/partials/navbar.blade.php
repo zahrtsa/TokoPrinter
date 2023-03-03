@@ -54,31 +54,24 @@
                         <li class="nav-item">
                             <a href="{{ route('whistlist.show') }}" class="nav-link position-relative me-2 text-light">
                                 <i class="bi bi-bag"></i>
-                                {{-- @php
-                                    $whislist = App\Models\Whistlist::where('user_id', '=', Auth::user()->id)
-                                        ->where('product_id', App\Models\Whistlist::where('user_id', '=', Auth::user()->id))
-                                        ->count();
-                                    
-                                @endphp --}}
+                                @php
+                                    $whislist = App\Models\Whistlist::where('user_id', '=', Auth::user()->id)->count();
+                                @endphp
                                 <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
                                     id="button-sec">
-                                    {{-- {{ $whistlist }} --}}
+                                    {{ $whislist }}+
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('order.waitConfirm') }}" class="nav-link position-relative me-2 text-light">
                                 <i class="bi bi-cart-check"></i>
-
-                                {{-- @php
-                                    $whistlist = \App\Models\Whistlist::where('user_id', '=', Auth::user()->id)
-                                        ->get()
-                                        ->count();
-                                @endphp --}}
+                                @php
+                                    $orderCount = \App\Models\Order::where('user_id', '=', Auth::user()->id)->count();
+                                @endphp
                                 <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
                                     id="button-sec">
-                                    {{-- {{ $whistlist }} --}}
-                                    5
+                                    {{ $orderCount }}+
                                 </span>
                             </a>
                         </li>

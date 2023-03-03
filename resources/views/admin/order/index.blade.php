@@ -33,17 +33,17 @@
                                 @if ($o->is_confirmed == 1)
                                     <span class="badge" id="button-sec">Confirmed</span>
                                 @else
-                                    <span class="badge" id="button-prim">Pendding</span>
+                                    <span class="badge bg-warning">Pendding</span>
                                 @endif
                             </td>
                             <td>
                                 @if ($o->is_confirmed == 0)
                                     <a href="{{ route('orderAdmin.confirm', $o->id) }}" class="btn"
                                         id="button-sec">Confirm
-                                        Now</a>
+                                    </a>
                                 @else
-                                    <a href="{{ route('orderAdmin.cancel', $o->id) }}" class="btn" id="button-prim">Hapus
-                                        Order</a>
+                                    <a href="{{ route('orderAdmin.cancel', $o->id) }}"
+                                        class="btn btn-danger">Unconfirmed</a>
                                 @endif
                             </td>
                         </tr>

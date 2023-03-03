@@ -6,6 +6,7 @@
             <img src="{{ url('storage') }}/{{ $product->image }}" alt="">
             <p class="fw-semibold fs-3">{{ $product->name }}</p>
             <span class="text-danger">{{ number_format($product->price) }} IDR</span>
+            <p>{{ $product->desc }}</p>
             <hr class="mb-2">
             <form action="{{ route('order.store', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf

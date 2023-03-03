@@ -33,6 +33,6 @@ class AdminController extends Controller
         $order = Order::find($id);
         $order->is_confirmed = false;
         $order->save();
-        return redirect()->route('orderAdmin.show')->with('success', 'Pesanan Dikonfirmasi');
+        return redirect()->route('orderAdmin.show')->with('success', 'Pesanan Unkonfirmasi');
     }
 }
