@@ -41,9 +41,9 @@ class OrderController extends Controller
         }
 
         $product = Product::find($id);
-        $newStock = $product->stock - $request->amount;
+        // $newStock = $product->stock - $request->amount;
 
-        if ($newStock <= 0) {
+        if ($product->stock <= $request->amount) {
             return redirect()->route('order.show', $product->id)->with('error', 'Jumlah Barang Yang Diminta Tidak Mencukupi');
         }
 
@@ -53,8 +53,8 @@ class OrderController extends Controller
         $postData = ['user_id' => Auth::user()->id, 'product_id' => $product->id, 'price' => $price, 'is_confirmed' => false, 'amount' => $request->amount];
         $orders->create($postData);
 
-        $product->stock = $newStock;
-        $product->update();
+        // $product->stock = $newStock;
+        // $product->update();
 
         if (!$orders) {
             return back()->with('error', 'Terjadi Kesalahan Saat Mengorder');

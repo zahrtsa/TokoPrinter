@@ -7,7 +7,6 @@
             <hr class="mb-2">
             <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" value="{{ $product->id }}" name="id">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Name Product</label>
                     <input type="text" class="form-control text-capitalize" name="name" id="exampleFormControlInput1"
