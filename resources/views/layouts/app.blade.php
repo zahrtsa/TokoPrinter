@@ -29,7 +29,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body style="background-color:#3e6d9c;">
     <div id="app">
         @include('partials.navbar')
         <main class="py-4">

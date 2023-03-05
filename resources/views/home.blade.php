@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'laH?shop')
+@section('title', 'Gollvander')
 @section('content')
     <div class="container">
         <div class="row flex-wrap">
@@ -11,7 +11,16 @@
                     </div>
                     <div class="card-body">
                         <hr>
-                        <h5 class="card-title fw-semibold">{{ \Illuminate\Support\Str::limit($p->name, 12, '...') }}</h5>
+                        <div class="d-flex">
+                            <h5 class="card-title fw-semibold">{{ \Illuminate\Support\Str::limit($p->name, 12, '...') }}</h5>
+                            <div class=" star px-3 py-0" >
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
                         <div class="d-flex">
                             <span class="card-text me-2 text-danger">{{ number_format($p->price) }} IDR</span>
                             <span class="px-3 py-0 rounded-3 rounded-md" id="button-prim">{{ $p->stock }} Stock</span>

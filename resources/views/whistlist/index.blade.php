@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row flex-wrap">
-            <div class="p-3 mb-2 rounded-3 rounded-md " id="button-sec">
+            <div class="p-3 mb-2 rounded-3 rounded-md " id="button-blue">
                 Whistlist Anda....
             </div>
             @forelse ($whistlist as $w)

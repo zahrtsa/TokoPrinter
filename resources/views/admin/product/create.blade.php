@@ -29,9 +29,9 @@
                     <input type="file" class="form-control" name="image" id="exampleFormControlInput4" required>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('admin.home') }}" class="btn me-1" id="button-sec"><i
-                            class="bi bi-arrow-left"></i></a>
-                    <button class="btn" id="button-prim">Create Product</button>
+                    <a href="{{ route('admin.home') }}" class="btn me-1" id="button-bck"><i
+                            class="bi bi-arrow-left"></i> Back</a>
+                    <button class="btn float-end" id="button-sec">Create Product</button>
                 </div>
             </form>
         </div>

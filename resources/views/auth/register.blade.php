@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="bg-white rounded-md rounded-3 p-4">
-                    <span class="mb-3 fs-3 fw-semibold">Register</span>
+                    <p class="mb-3 fs-3 fw-semibold">Register</p>
                     <form action="{{ route('register') }}" method="post">
                         @csrf
                         <div class="mb-3">

@@ -3,9 +3,13 @@
 @section('content')
     <div class="container">
         <div class="bg-white border-0 rounded-md rounded-3 p-5">
-            <p class="fw-semibold fs-4">Products</p>
-            <hr class="mb-2">
-            <a href="{{ route('product.create') }}" class="btn mb-3" id="button-sec">Add product</a>
+            <div class="d-flex">
+                <p class="fw-semibold fs-4">Products</p>
+                <div class="px-3 py-0">
+                    <a href="{{ route('product.create') }}" class="btn  btn-primary border-0 float-end" id="button-blue">Add product</a>
+                </div>
+            </div>
+            <hr class="mb-4  mt-2">
             <table class="table table-hover display" id="table_id">
                 <thead>
                     <tr>
@@ -32,7 +36,7 @@
                             <td>
                                 <a href="{{ route('product.edit', $p->id) }}" class="btn" id="button-prim"><i
                                         class="bi bi-pen"></i></a>
-                                <a href="{{ route('product.destroy', $p->id) }}" class="btn btnDelete" id="button-sec"><i
+                                <a href="{{ route('product.destroy', $p->id) }}" class="btn btnDelete" id="button-delete"><i
                                         class="bi bi-trash2"></i></a>
                             </td>
                         </tr>

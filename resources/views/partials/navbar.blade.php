@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-md shadow-sm bg-light" id="bg-primarys">
+<nav class="navbar navbar-expand-md shadow-sm bg-dark" id="bg-primarys">
     <div class="container">
         @if (Auth::check() && Auth::user()->role === 'admin')
-            <a class="navbar-brand text-light" href="{{ route('admin.home') }}">
-                laH?shop
+            <a class="navbar-brand  text-light" href="{{ route('admin.home') }}">
+                <h3 class="navbar-item color-3" style="font-weight: 900 ">Gollvander</h3>
             </a>
-        @elseif (Auth::check() && Auth::user()->role === 'custom')
+        @elseif (Auth::check() && Auth::user()->role === 'customer')
             <a class="navbar-brand text-light" href="{{ route('home') }}">
-                laH?shop
+                <h3 class="navbar-item color-3" style="font-weight: 900 ">Gollvander</h3>
             </a>
         @else
             <a class="navbar-brand text-light" href="{{ route('welcome') }}">
-                laH?shop
+                <h3 class="navbar-item color-3" style="font-weight: 900 ">Gollvander</h3>
             </a>
         @endif
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -22,6 +22,36 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
 
+            </ul>
+
+            <ul class="navbar-nav justify-content-center">
+                @if (Auth::check() && Auth::user()->role === 'admin')
+                <li class="nav-item">
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="#">
+                        Home
+                    </a>
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="{{ route('admin.home')}}">
+                        Product
+                     </a>
+                        <span style="text-decoration: none; font-weight: 700" class="color-4 justify-content-center" ><span>- Dashboard Admin -</span>
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="#">
+                        Order
+                    </a>
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="#">
+                        Transaksi
+                    </a>
+                </li>
+                @elseif (Auth::check() && Auth::user()->role === 'customer')
+                <li class="nav-item">
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="{{ url('/home') }}">
+                        Home
+                    </a>
+                     <span style="text-decoration: none; font-weight: 700" class="color-4 justify-content-center" ><span>- Dashboard User -</span>
+                     <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="{{ route('order.waitConfirm') }}">
+                        Order
+                    </a>
+                </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -46,7 +76,7 @@
                                 <i class="bi bi-box-seam-fill"></i>
                                 <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
                                     id="button-sec">
-                                    {{ App\Models\Order::all()->count() }}+
+                                    {{ App\Models\Order::all()->count() }}
                                 </span>
                             </a>
                         </li>
@@ -59,7 +89,7 @@
                                 @endphp
                                 <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
                                     id="button-sec">
-                                    {{ $whislist }}+
+                                    {{ $whislist }}
                                 </span>
                             </a>
                         </li>
@@ -71,7 +101,7 @@
                                 @endphp
                                 <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
                                     id="button-sec">
-                                    {{ $orderCount }}+
+                                    {{ $orderCount }}
                                 </span>
                             </a>
                         </li>

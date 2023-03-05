@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="card border-0 bg-white rounded-md rounded-3 p-4">
-                    <span class="mb-3 fs-3 fw-semibold">Login</span>
+                    <span class="mb-3 fs-2 fw-semibold color-3 text-center">Gollvander</span>
                     <form action="{{ route('login') }}" method="post">
                         @csrf
                         <div class="mb-3">
@@ -27,7 +27,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn" id="button-sec">Submit</button>
+                        <button type="submit" class="btn" id="button-blue">Login</button>
                     </form>
                 </div>
             </div>

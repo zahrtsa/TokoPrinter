@@ -1,28 +1,87 @@
 * {
-  font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 :root {
-  --primary: rgba(6, 43, 48, 1);
-  --secondary: rgba(66, 215, 133, 1);
-  --btn-prim: rgba(6, 43, 48, 0.2);
-  --btn-sec: rgba(66, 215, 133, 0.3);
+    --primary: rgba(6, 43, 48, 1);
+    --grey: rgb(70, 70, 70);
+    --blue: rgb(72, 130, 197);
+    --red: rgb(167, 20, 20);
+    --secondary: rgba(66, 215, 133, 1);
+    --btn-prim: rgba(6, 43, 48, 0.2);
+    --btn-sec: rgba(66, 215, 133, 0.3);
+    --btn-bck: rgba(162, 163, 162, 0.329);
+    --btn-blue: rgb(184, 210, 240);
+    --btn-del: rgb(245, 160, 160);
+    --color-star: rgb(219, 154, 34);
+    --color-1: #112b3c;
+    --color-2: #205375;
+    --color-3: #f66b0e;
+    --color-4: #efefef;
+}
+
+.star {
+    color: var(--color-star);
+    max-width: 300;
+}
+.color-1 {
+    color: var(--color-1);
+}
+.color-2 {
+    color: var(--color-2);
+}
+.color-3 {
+    color: var(--color-3);
+}
+.color-4 {
+    color: var(--color-4);
 }
 
 #bg-primarys {
-  background-color: var(--primary) !important;
+    background-color: var(--primary) !important;
 }
 
 #bg-secondary {
-  background-color: var(--secondary) !important;
+    background-color: var(--secondary) !important;
+}
+
+.bg-body {
+    background-color: var(--color-1);
 }
 
 #button-prim {
-  background-color: var(--btn-prim);
-  color: var(--primary);
+    background-color: var(--btn-prim);
+    color: var(--primary);
 }
 
 #button-sec {
-  background-color: var(--btn-sec);
-  color: var(--secondary);
+    background-color: var(--btn-sec);
+    color: var(--secondary);
+}
+
+#button-bck {
+    background-color: var(--btn-bck);
+    color: var(--grey);
+}
+
+#button-blue {
+    background-color: var(--btn-blue);
+    color: var(--blue);
+}
+
+#button-delete {
+    background-color: var(--btn-del);
+    color: var(--red);
+}
+
+/* Garis Pembatas */
+.solid {
+    border-left: 1px solid;
+    color: #ffffff8c;
+    height: 17px;
+    width: 0px;
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-top: 12px;
 }
