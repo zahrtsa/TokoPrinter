@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md shadow-sm bg-dark" id="bg-primarys">
+<nav class="navbar navbar-expand-md shadow-sm bg-dark" id="bg-nav">
     <div class="container">
         @if (Auth::check() && Auth::user()->role === 'admin')
             <a class="navbar-brand  text-light" href="{{ route('admin.home') }}">
@@ -34,10 +34,10 @@
                         Product
                      </a>
                         <span style="text-decoration: none; font-weight: 700" class="color-4 justify-content-center" ><span>- Dashboard Admin -</span>
-                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="#">
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="{{ route('orderAdmin.show') }}">
                         Order
                     </a>
-                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="#">
+                    <a style="text-decoration: none; font-weight: 300" class="color-4 m-1 justify-content-center" href="{{ route('transaction.show') }}">
                         Transaksi
                     </a>
                 </li>
@@ -63,7 +63,7 @@
                             <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                     @endif
-
+                        <hr clas="solid">
                     @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -71,40 +71,49 @@
                     @endif
                 @else
                     @if (Auth::user()->role === 'admin')
-                        <li class="nav-item">
-                            <a href="{{ route('orderAdmin.show') }}" class="nav-link position-relative me-2 text-light">
-                                <i class="bi bi-box-seam-fill"></i>
-                                <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
-                                    id="button-sec">
-                                    {{ App\Models\Order::all()->count() }}
-                                </span>
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a href="{{ route('whistlist.show') }}" class="nav-link position-relative me-2 text-light">
-                                <i class="bi bi-bag"></i>
-                                @php
-                                    $whislist = App\Models\Whistlist::where('user_id', '=', Auth::user()->id)->count();
-                                @endphp
-                                <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
-                                    id="button-sec">
-                                    {{ $whislist }}
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('order.waitConfirm') }}" class="nav-link position-relative me-2 text-light">
-                                <i class="bi bi-cart-check"></i>
-                                @php
-                                    $orderCount = \App\Models\Order::where('user_id', '=', Auth::user()->id)->count();
-                                @endphp
-                                <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
-                                    id="button-sec">
-                                    {{ $orderCount }}
-                                </span>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('orderAdmin.show') }}" class="nav-link position-relative me-2 text-light">
+                            <i class="bi bi-box-seam-fill"></i>
+                            <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
+                                id="button-sec">
+                                {{ App\Models\Order::all()->count() }}
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('transaction.show') }}" class="nav-link position-relative me-2 text-light">
+                            <i class="bi bi-check-circle"></i>
+                            <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
+                                id="button-sec">
+                                {{ App\Models\Transaction::all()->count() }}
+                            </span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{ route('whistlist.show') }}" class="nav-link position-relative me-2 text-light">
+                            <i class="bi bi-bag"></i>
+                            @php
+                                $whislist = App\Models\Whistlist::where('user_id', '=', Auth::user()->id)->count();
+                            @endphp
+                            <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
+                                id="button-sec">
+                                {{ $whislist }}
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('order.waitConfirm') }}" class="nav-link position-relative me-2 text-light">
+                            <i class="bi bi-cart-check"></i>
+                            @php
+                                $orderCount = \App\Models\Order::where('user_id', '=', Auth::user()->id)->count();
+                            @endphp
+                            <span class="position-absolute top-4 start-90 translate-middle badge rounded-pill"
+                                id="button-sec">
+                                {{ $orderCount }}
+                            </span>
+                        </a>
+                    </li>
                     @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-light text-capitalize" href="#"

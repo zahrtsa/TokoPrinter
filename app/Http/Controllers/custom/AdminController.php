@@ -5,6 +5,8 @@ namespace App\Http\Controllers\custom;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,17 +23,24 @@ class AdminController extends Controller
         $order = Order::all();
         return view('admin.order.index', compact(['order']));
     }
-    public function confirm($id)
+    public function confirm(Request $request, $id)
     {
         $order = Order::find($id);
         $order->is_confirmed = true;
         $order->save();
 
-        $product = Product::find($id);
+        //$cart = User::findOrfail($id);
+
+        //$product = Product::findOrFail($order->id);
+        $product = Product::find($order->product_id);
         $newStock = $product->stock - $order->amount;
         $product->stock = $newStock;
-        $product->update();
+        $product->save();
+
+
+        // $product->update();
         return redirect()->route('orderAdmin.show')->with('success', 'Pesanan Dikonfirmasi');
+
     }
     public function cancel($id)
     {
@@ -39,5 +48,10 @@ class AdminController extends Controller
         $order->is_confirmed = false;
         $order->save();
         return redirect()->route('orderAdmin.show')->with('success', 'Pesanan Unkonfirmasi');
+    }
+    public function transactionshow()
+    {
+        $transaction = Transaction::all();
+        return view('admin.transaction.index', compact(['transaction']));
     }
 }

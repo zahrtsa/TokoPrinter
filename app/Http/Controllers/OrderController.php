@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -15,8 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $transaction = Transaction::where('user_id', '=', Auth::user()->id)->get();
         $order = Order::where('user_id', '=', Auth::user()->id)->get();
-        return view('order.waitConfirm', compact(['order']));
+        return view('order.waitConfirm', compact(['order', 'transaction']));
     }
 
     /**
@@ -34,32 +36,63 @@ class OrderController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
+            'address' => "required|max:100",
+            'postcode' => "required|max:5",
+            'telp' => "required|max:12",
             'amount' => "required",
+            'metode' => "required"
         ]);
+
         if ($validator->fails()) {
             return back()->with($validator->messages()->all()[0])->withInput();
         }
 
         $product = Product::find($id);
-        // $newStock = $product->stock - $request->amount;
+        $cekOrder = Order::where('user_id', '=', Auth::user()->id)->where('is_confirmed', '=', 0)->first();
+
 
         if ($product->stock <= $request->amount) {
             return redirect()->route('order.show', $product->id)->with('error', 'Jumlah Barang Yang Diminta Tidak Mencukupi');
         }
 
         $price = $product->price * $request->amount;
-        $orders = new Order();
 
-        $postData = ['user_id' => Auth::user()->id, 'product_id' => $product->id, 'price' => $price, 'is_confirmed' => false, 'amount' => $request->amount];
-        $orders->create($postData);
+        if (empty($cekOrder)) {
+            $orders = new Order();
 
-        // $product->stock = $newStock;
-        // $product->update();
+            $postData = ['user_id' => Auth::user()->id, 'product_id' => $product->id, 'price' => $price, 'is_confirmed' => false, 'amount' => $request->amount, 'address' => $request->address, 'postcode' => $request->postcode, 'telp' => $request->telp, 'metode' => $request->metode];
+            $orders->create($postData);
 
-        if (!$orders) {
-            return back()->with('error', 'Terjadi Kesalahan Saat Mengorder');
+            if (!$orders) {
+                return back()->with('error', 'Terjadi Kesalahan Saat Mengorder');
+            } else {
+                return redirect()->route('order.waitConfirm')->with('success', 'Order Berhasil');
+            }
+        }
+
+        $newOrder = Order::where('product_id', '=', $product->id)->where('user_id', '=', Auth::user()->id)->first();
+        if (empty($newOrder)) {
+            $orders = new Order();
+
+            $postData = ['user_id' => Auth::user()->id, 'product_id' => $product->id, 'price' => $price, 'is_confirmed' => false, 'amount' => $request->amount, 'address' => $request->address, 'postcode' => $request->postcode, 'telp' => $request->telp, 'metode' => $request->metode];
+            $orders->create($postData);
+
+            if (!$orders) {
+                return back()->with('error', 'Terjadi Kesalahan Saat Mengorder');
+            } else {
+                return redirect()->route('order.waitConfirm')->with('success', 'Order Berhasil');
+            }
         } else {
-            return redirect()->route('order.waitConfirm')->with('success', 'Order Berhasil');
+            $newPrice = $product->price * $request->amount;
+            $newOrder->amount = $newOrder->amount + $request->amount;
+            $newOrder->price = $newOrder->price + $newPrice;
+            $newOrder->update();
+
+            if (!$newOrder) {
+                return back()->with('error', 'Terjadi Kesalahan Saat Mengorder');
+            } else {
+                return redirect()->route('order.waitConfirm')->with('success', 'Order Berhasil');
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'laH?shop')
+@section('title', 'Gollvander')
 @section('content')
     <div class="container">
         <div class="row flex-wrap">

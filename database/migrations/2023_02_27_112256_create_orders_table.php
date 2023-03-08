@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->unsigned();
             $table->foreignId('product_id')->unsigned();
             // $table->string('name');
-            // $table->string('address');
-            // $table->integer('postcode');
-            // $table->bigInteger('telp');
+            $table->string('address');
+            $table->integer('postcode');
+            $table->bigInteger('telp');
             $table->bigInteger('amount');
             $table->bigInteger('price');
+            $table->string('metode');
             $table->boolean('is_confirmed');
             $table->timestamps();
         });

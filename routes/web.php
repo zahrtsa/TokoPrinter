@@ -27,6 +27,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('confirm/{id}', 'App\Http\Controllers\custom\AdminController' . '@confirm')->name('orderAdmin.confirm');
     Route::get('cancel/{id}', 'App\Http\Controllers\custom\AdminController' . '@cancel')->name('orderAdmin.cancel');
 
+    // transaction success
+    Route::get('/transaction', 'App\Http\Controllers\custom\AdminController' . '@transactionshow')->name('transaction.show');
+
     // update
     Route::post('product/update/{id}', 'App\Http\Controllers\ProductController' . '@update')->name('product.update');
 
@@ -49,4 +52,8 @@ Route::prefix('home')->middleware(['auth', 'custom'])->group(function () {
     Route::post('order/store/{id}', 'App\Http\Controllers\OrderController' . '@store')->name('order.store');
     Route::get('product/show/{id}', 'App\Http\Controllers\OrderController' . '@show')->name('order.show');
     Route::get('order/destroy/{id}', 'App\Http\Controllers\OrderController' . '@destroy')->name('order.destroy');
+
+    // transaction
+    // Route::resource('transaction', 'App\Http\Controllers\TransactionController');
+    Route::post('transaction/store/{id}', 'App\Http\Controllers\TransactionController' . '@store')->name('transaction.store');
 });

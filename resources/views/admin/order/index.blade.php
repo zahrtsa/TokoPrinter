@@ -27,7 +27,7 @@
                             <td>{{ App\Models\Product::find($o->product_id)->name }}</td>
                             <td>Rp. {{ number_format(App\Models\Product::find($o->product_id)->price) }}</td>
                             <td>Rp. {{ number_format($o->price) }}</td>
-                            <td>{{ $o->amount }} Qty</td>
+                            <td>{{ number_format($o->amount) }} Stock</td>
                             <td>{{ date('d-m-Y', strtotime($o->created_at)) }}</td>
                             <td>
                                 @if ($o->is_confirmed == 1)
